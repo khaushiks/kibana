@@ -1,0 +1,23 @@
+elasticsearchHosts: "http://elasticsearch-master.elastic.svc.cluster.local:9200"
+protocol: http
+healthCheckPath: "/api/status"
+
+# Disable security (since ES has xpack.security.enabled: false)
+elasticsearchCertificateSecret: ""
+elasticsearchCertificateAuthoritiesFile: ""
+elasticsearchCredentialSecret: ""
+
+replicas: 1
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+
+# Optional: disable SSL verification
+kibanaConfig:
+  kibana.yml: |
+    elasticsearch.ssl.verificationMode: none

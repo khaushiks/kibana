@@ -1,0 +1,30 @@
+elasticsearchHosts: "http://elasticsearch-master.elastic.svc.cluster.local:9200"
+protocol: http
+healthCheckPath: "/api/status"
+
+elasticsearchCertificateSecret: ""
+elasticsearchCertificateAuthoritiesFile: ""
+elasticsearchCredentialSecret: ""
+
+replicas: 1
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+
+kibanaConfig:
+  kibana.yml: |
+    elasticsearch.ssl.verificationMode: none
+
+service:
+  type: ClusterIP
+  port: 5601
+  labels: {}
+  annotations: {}
+
+ingress:
+  enabled: false
