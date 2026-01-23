@@ -6,14 +6,13 @@ imagePullPolicy: IfNotPresent
 
 serverHost: "0.0.0.0"
 httpPort: 5601
-protocol: http  # ← Kibana UI protocol (not ES connection!)
+protocol: http
 healthCheckPath: "/api/status"
 
-# ✅ CORRECT ELASTICSEARCH URL (HTTPS + right namespace)
-elasticsearchHosts: "http://elasticsearch-master.elasticsearch.svc:9200"
+# ✅ FIXED: Use HTTPS (Elasticsearch has TLS enabled)
+elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
 
-# --- Credentials ---
-# Use explicit username/password (don't rely on empty secrets)
+# Credentials
 elasticsearchUsername: "elastic"
 elasticsearchPassword: "1AkrbbaIRrnyVmDV"
 
@@ -34,9 +33,7 @@ resources:
 
 kibanaConfig:
   kibana.yml: |
-    # Allow self-signed certs
     elasticsearch.ssl.verificationMode: none
-    # Keep security enabled (since ES has auth)
     xpack.security.enabled: true
 
 service:
