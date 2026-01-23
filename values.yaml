@@ -3,7 +3,7 @@
 replicas: 1
 
 image: docker.elastic.co/kibana/kibana
-imageTag: "8.12.0"  # adjust as needed
+imageTag: "8.12.0"
 imagePullPolicy: IfNotPresent
 
 serverHost: "0.0.0.0"
@@ -11,16 +11,22 @@ httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
-# Elasticsearch connection (HTTP)
 elasticsearchHosts: "http://elasticsearch-master.elastic.svc.cluster.local:9200"
 
-# Leave these empty for HTTP (no TLS)
+# --- CRITICAL: Disable all security-related features ---
 elasticsearchCertificateSecret: ""
 elasticsearchCertificateAuthoritiesFile: ""
 elasticsearchCredentialSecret: ""
 
-# Optional: set to false if not using service account token
-automountToken: true
+# Disable service account token mounting (key fix!)
+automountToken: false
+
+# Explicitly disable jobs (even if chart ignores it, we try)
+preInstallJob:
+  enabled: false
+
+postDeleteJob:
+  enabled: false
 
 resources:
   requests:
@@ -33,27 +39,15 @@ resources:
 kibanaConfig:
   kibana.yml: |
     elasticsearch.ssl.verificationMode: none
+    # Optional: disable security plugin if present
+    xpack.security.enabled: false
 
 service:
   type: ClusterIP
   port: 5601
-  labels: {}
-  annotations: {}
 
 ingress:
   enabled: false
 
 updateStrategy:
   type: RollingUpdate
-
-preInstallJob:
-  enabled: false
-
-postDeleteJob:
-  enabled: false
-elasticsearchCertificateSecret: ""
-elasticsearchCredentialSecret: ""
-# Uncomment if needed
-# podSecurityContext: {}
-# securityContext: {}
-# serviceAccount: "kibana-sa"
