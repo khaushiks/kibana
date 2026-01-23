@@ -124,8 +124,8 @@ spec:
                   key: token
                   optional: true
             {{- end }}
-{{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 12 }}
+{{- if .Values.env }}
+{{ toYaml .Values.env | indent 12 }}
 {{- end }}
 {{- if .Values.envFrom }}
           envFrom:
