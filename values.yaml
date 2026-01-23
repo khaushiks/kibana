@@ -21,13 +21,6 @@ elasticsearchCredentialSecret: ""
 # Disable service account token mounting (key fix!)
 automountToken: false
 
-# Explicitly disable jobs (even if chart ignores it, we try)
-preInstallJob:
-  enabled: false
-
-postDeleteJob:
-  enabled: false
-
 resources:
   requests:
     cpu: "200m"
