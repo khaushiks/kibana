@@ -9,10 +9,17 @@ httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
-# ✅ FIXED: Use HTTPS (Elasticsearch has TLS enabled)
+# Fix 1: Use HTTPS (Elasticsearch has TLS enabled)
 elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
 
-# Credentials
+# Fix 2: Add these extra environment variables
+extraEnvs:
+  - name: ELASTICSEARCH_USERNAME
+    value: "elastic"
+  - name: ELASTICSEARCH_PASSWORD
+    value: "1AkrbbaIRrnyVmDV"
+
+# Keep these for Helm chart compatibility
 elasticsearchUsername: "elastic"
 elasticsearchPassword: "1AkrbbaIRrnyVmDV"
 
