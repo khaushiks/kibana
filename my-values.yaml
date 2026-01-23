@@ -1,4 +1,4 @@
-elasticsearchHosts: "http://elasticsearch-master.elastic.svc.cluster.local:9200"
+elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
 protocol: http
 healthCheckPath: "/api/status"
 
