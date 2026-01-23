@@ -9,10 +9,9 @@ httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
-# Disable auto-generated secrets
+# Disable auto-generated secrets (we'll handle credentials in kibana.yml)
 elasticsearchCertificateSecret: ""
 elasticsearchCredentialSecret: ""
-
 automountToken: false
 
 resources:
@@ -26,18 +25,26 @@ resources:
 kibanaConfig:
   kibana.yml: |
     server.host: "0.0.0.0"
+    server.port: 5601
     elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
     elasticsearch.username: "elastic"
     elasticsearch.password: "1AkrbbaIRrnyVmDV"
     elasticsearch.ssl.verificationMode: none
     xpack.security.enabled: true
+    # Optional: suppress encryption key warnings (not required for basic functionality)
+    xpack.security.encryptionKey: "a32d8f7e9c1b5a6d4e2f0c8b7a9d1e3f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v"
+    xpack.encryptedSavedObjects.encryptionKey: "v0u9t8s7r6q5p4o3n2m1l0k9j8i7h6g5f4e3d2c1b0a9z8y7x6w5v4u3t2s1r"
 
 service:
   type: ClusterIP
   port: 5601
+  name: kibana-kibana
 
 ingress:
   enabled: false
 
 updateStrategy:
   type: RollingUpdate
+
+# Add labels if needed
+labels: {}
