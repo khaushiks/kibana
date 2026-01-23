@@ -9,23 +9,8 @@ httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
-# Fix 1: Use HTTPS (Elasticsearch has TLS enabled)
-elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
-
-# Fix 2: Add these extra environment variables
-extraEnvs:
-  - name: ELASTICSEARCH_USERNAME
-    value: "elastic"
-  - name: ELASTICSEARCH_PASSWORD
-    value: "1AkrbbaIRrnyVmDV"
-
-# Keep these for Helm chart compatibility
-elasticsearchUsername: "elastic"
-elasticsearchPassword: "1AkrbbaIRrnyVmDV"
-
-# Disable unused security mounts
+# Disable auto-generated secrets
 elasticsearchCertificateSecret: ""
-elasticsearchCertificateAuthoritiesFile: ""
 elasticsearchCredentialSecret: ""
 
 automountToken: false
@@ -40,6 +25,10 @@ resources:
 
 kibanaConfig:
   kibana.yml: |
+    server.host: "0.0.0.0"
+    elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
+    elasticsearch.username: "elastic"
+    elasticsearch.password: "1AkrbbaIRrnyVmDV"
     elasticsearch.ssl.verificationMode: none
     xpack.security.enabled: true
 
