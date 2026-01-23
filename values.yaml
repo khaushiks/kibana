@@ -10,7 +10,7 @@ protocol: http  # ← Kibana UI protocol (not ES connection!)
 healthCheckPath: "/api/status"
 
 # ✅ CORRECT ELASTICSEARCH URL (HTTPS + right namespace)
-elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
+elasticsearchHosts: ""
 
 env:
   - name: ELASTICSEARCH_HOSTS
