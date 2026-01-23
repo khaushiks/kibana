@@ -116,12 +116,14 @@ spec:
 {{- end }}
             - name: SERVER_HOST
               value: "{{ .Values.serverHost }}"
+            {{- if and .Values.automountToken (not .Values.elasticsearchCredentialSecret) }}
             - name: ELASTICSEARCH_SERVICEACCOUNTTOKEN
               valueFrom:
                 secretKeyRef:
                   name: {{ template "kibana.fullname" . }}-es-token
                   key: token
-                  optional: false
+                  optional: true
+            {{- end }}
 {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 12 }}
 {{- end }}
