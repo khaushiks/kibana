@@ -46,6 +46,12 @@ ingress:
 updateStrategy:
   type: RollingUpdate
 
+preInstallJob:
+  enabled: false
+
+postDeleteJob:
+  enabled: false
+
 # Uncomment if needed
 # podSecurityContext: {}
 # securityContext: {}
