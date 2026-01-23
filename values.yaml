@@ -51,7 +51,8 @@ preInstallJob:
 
 postDeleteJob:
   enabled: false
-
+elasticsearchCertificateSecret: ""
+elasticsearchCredentialSecret: ""
 # Uncomment if needed
 # podSecurityContext: {}
 # securityContext: {}
