@@ -1,12 +1,26 @@
-elasticsearchHosts: "http://elasticsearch-master.elastic.svc.cluster.local:9200"
+# Kibana Helm values for HTTP Elasticsearch (no TLS)
+
+replicas: 1
+
+image: docker.elastic.co/kibana/kibana
+imageTag: "8.12.0"  # adjust as needed
+imagePullPolicy: IfNotPresent
+
+serverHost: "0.0.0.0"
+httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
+# Elasticsearch connection (HTTP)
+elasticsearchHosts: "http://elasticsearch-master.elastic.svc.cluster.local:9200"
+
+# Leave these empty for HTTP (no TLS)
 elasticsearchCertificateSecret: ""
 elasticsearchCertificateAuthoritiesFile: ""
 elasticsearchCredentialSecret: ""
 
-replicas: 1
+# Optional: set to false if not using service account token
+automountToken: true
 
 resources:
   requests:
@@ -31,3 +45,8 @@ ingress:
 
 updateStrategy:
   type: RollingUpdate
+
+# Uncomment if needed
+# podSecurityContext: {}
+# securityContext: {}
+# serviceAccount: "kibana-sa"
