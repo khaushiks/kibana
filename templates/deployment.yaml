@@ -103,19 +103,6 @@ spec:
           image: "{{ .Values.image }}:{{ .Values.imageTag }}"
           imagePullPolicy: "{{ .Values.imagePullPolicy }}"
           env:
-{{- if .Values.elasticsearchCertificateAuthoritiesFile }}
-            - name: ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES
-              value: "{{ template "kibana.home_dir" . }}/config/certs/{{ .Values.elasticsearchCertificateAuthoritiesFile }}"
-{{- end }}
-            
-            {{- if and .Values.automountToken (not .Values.elasticsearchCredentialSecret) }}
-            - name: ELASTICSEARCH_SERVICEACCOUNTTOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "kibana.fullname" . }}-es-token
-                  key: token
-                  optional: true
-            {{- end }}
 {{- if .Values.env }}
 {{ toYaml .Values.env | indent 12 }}
 {{- end }}
