@@ -41,6 +41,11 @@ kibanaConfig:
 
     xpack.security.enabled: true
 
+secretMounts:
+  - name: elasticsearch-certs
+    secretName: elasticsearch-master-certs
+    path: /usr/share/kibana/config/certs
+
 service:
   type: ClusterIP
   port: 5601
