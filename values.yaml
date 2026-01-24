@@ -9,27 +9,10 @@ httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
-elasticsearchHosts: ""
-
-env:
-  - name: ELASTICSEARCH_HOSTS
-    value: "https://elasticsearch-master.elasticsearch.svc:9200"
-
-  - name: ELASTICSEARCH_USERNAME
-    value: "elastic"
-
-  - name: ELASTICSEARCH_PASSWORD
-    value: "1AkrbbaIRrnyVmDV"
-
-  - name: SERVER_HOST
-    value: "0.0.0.0"
-
-elasticsearchUsername: ""
-elasticsearchPassword: ""
-
+elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
 elasticsearchCertificateSecret: ""
 elasticsearchCertificateAuthoritiesFile: ""
-elasticsearchCredentialSecret: ""
+elasticsearchCredentialSecret: "elasticsearch-master-credentials"
 
 automountToken: false
 
