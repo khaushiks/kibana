@@ -28,12 +28,10 @@ kibanaConfig:
   kibana.yml: |
     server.host: "0.0.0.0"
 
-    elasticsearch.hosts:
-      - https://elasticsearch-master.elasticsearch.svc:9200
+    elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
 
-    elasticsearch.username: "elastic"
-    elasticsearch.password: "6DU8sKiZDEd0LIK2"
-    
+    elasticsearch.serviceAccountToken: "AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjpKYXRBQ2dTZlIyZWxSWkF2bnIwWkp3"
+ 
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
 
