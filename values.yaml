@@ -28,6 +28,7 @@ kibanaConfig:
   kibana.yml: |
     elasticsearch.ssl.verificationMode: none
     xpack.security.enabled: true
+    xpack.security.enrollment.enabled: true
 
 service:
   type: ClusterIP
