@@ -31,9 +31,6 @@ kibanaConfig:
     elasticsearch.hosts:
       - https://elasticsearch-master.elasticsearch.svc:9200
 
-    elasticsearch.username: "kibana_system"
-    elasticsearch.password: "4WzpLVzjXg7H6W3E1KaK"
-
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
 
@@ -45,6 +42,18 @@ secretMounts:
   - name: elasticsearch-certs
     secretName: elasticsearch-master-certs
     path: /usr/share/kibana/config/certs
+
+extraEnvs:
+  - name: ELASTICSEARCH_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-master-credentials
+        key: username
+  - name: ELASTICSEARCH_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-master-credentials
+        key: password
 
 service:
   type: ClusterIP
