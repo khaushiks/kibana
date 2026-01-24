@@ -12,7 +12,7 @@ healthCheckPath: "/api/status"
 elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
 elasticsearchCertificateSecret: ""
 elasticsearchCertificateAuthoritiesFile: ""
-elasticsearchCredentialSecret: "elasticsearch-master-credentials"
+
 
 automountToken: false
 
