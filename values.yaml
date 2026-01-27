@@ -32,16 +32,17 @@ kibanaConfig:
     server.port: 5601
     
     elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc.cluster.local:9200"]
-    
-    elasticsearch.serviceAccountToken: "auto"
-    # (auto means it uses the mounted token automatically)
-    
+
+    elasticsearch.username: "kibana_system"
+    elasticsearch.password: "recommended"
+
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
     
     elasticsearch.ssl.verificationMode: certificate
     
     xpack.security.enabled: true
+
 
 
 secretMounts:
