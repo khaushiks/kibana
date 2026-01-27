@@ -1,6 +1,5 @@
-serviceAccount:
-  create: true
-  name: kibana
+serviceAccountName: kibana
+
 replicas: 1
 
 image: docker.elastic.co/kibana/kibana
