@@ -39,9 +39,6 @@ kibanaConfig:
     server.port: 5601
     
     elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
-
-    # ✅ REQUIRED for Elastic 8.x
-    elasticsearch.serviceAccountToken: ${ELASTICSEARCH_SERVICE_TOKEN}
     
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
