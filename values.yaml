@@ -34,7 +34,7 @@ kibanaConfig:
     elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
 
     elasticsearch.username: "elastic"
-    elasticsearch.password: "elastic"
+    elasticsearch.password: "q5CfKTrBa4iWzhk7"
     
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
