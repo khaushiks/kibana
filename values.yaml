@@ -11,7 +11,7 @@ httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
-elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc.cluster.local:9200"
+elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
 elasticsearchCertificateSecret: ""
 elasticsearchCertificateAuthoritiesFile: ""
 
@@ -31,7 +31,7 @@ kibanaConfig:
     server.host: "0.0.0.0"
     server.port: 5601
     
-    elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc.cluster.local:9200"]
+    elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
 
     elasticsearch.username: "kibana_system"
     elasticsearch.password: "recommended"
