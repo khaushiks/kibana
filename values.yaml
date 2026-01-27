@@ -26,6 +26,13 @@ resources:
     cpu: "500m"
     memory: "1Gi"
 
+extraEnvs:
+  - name: ELASTICSEARCH_SERVICE_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: kibana-es-token
+        key: token
+
 kibanaConfig:
   kibana.yml: |
     server.host: "0.0.0.0"
@@ -33,8 +40,8 @@ kibanaConfig:
     
     elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
 
-    elasticsearch.username: "elastic"
-    elasticsearch.password: "elastic"
+    # ✅ REQUIRED for Elastic 8.x
+    elasticsearch.serviceAccountToken: ${ELASTICSEARCH_SERVICE_TOKEN}
     
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
