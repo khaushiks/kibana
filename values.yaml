@@ -47,7 +47,7 @@ kibanaConfig:
     
     xpack.security.enabled: true
 
-    elasticsearch.serviceToken: ${ELASTICSEARCH_SERVICE_TOKEN}
+    
 
 secretMounts:
   - name: elasticsearch-certs
