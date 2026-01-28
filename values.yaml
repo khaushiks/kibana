@@ -11,7 +11,7 @@ httpPort: 5601
 protocol: http
 healthCheckPath: "/api/status"
 
-elasticsearchHosts: "https://elasticsearch-master.elasticsearch.svc:9200"
+elasticsearchHosts: "http://elasticsearch-master.elasticsearch.svc:9200"
 elasticsearchCertificateSecret: ""
 elasticsearchCertificateAuthoritiesFile: ""
 
