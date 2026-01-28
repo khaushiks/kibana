@@ -27,18 +27,17 @@ resources:
     memory: "1Gi"
 
 extraEnvs:
-  - name: ELASTICSEARCH_SERVICE_TOKEN
-    valueFrom:
-      secretKeyRef:
-        name: kibana-es-token
-        key: token
+  - name: ELASTICSEARCH_USERNAME
+    value: "elastic"
+  - name: ELASTICSEARCH_PASSWORD
+    value: "Fb/es/kibana@123"
 
 kibanaConfig:
   kibana.yml: |
     server.host: "0.0.0.0"
     server.port: 5601
     
-    elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
+    elasticsearch.hosts: ["http://elasticsearch-master.elasticsearch.svc:9200"]
     
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
@@ -46,8 +45,9 @@ kibanaConfig:
     elasticsearch.ssl.verificationMode: certificate
     
     xpack.security.enabled: true
-
-
+    xpack.encryptedSavedObjects.encryptionKey: "32charrandomkey1234567890abcdef"
+    xpack.reporting.encryptionKey: "32charrandomkey0987654321fedcba"
+    xpack.security.encryptionKey: "32charrandomkey1122334455667788"
 
 secretMounts:
   - name: elasticsearch-certs
