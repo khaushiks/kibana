@@ -8,10 +8,10 @@ imagePullPolicy: IfNotPresent
 
 serverHost: "0.0.0.0"
 httpPort: 5601
-protocol: http
+protocol: https
 healthCheckPath: "/api/status"
 
-elasticsearchHosts: "http://elasticsearch-master.elasticsearch.svc:9200"
+elasticsearchHosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
 elasticsearchCertificateSecret: ""
 elasticsearchCertificateAuthoritiesFile: ""
 
@@ -47,7 +47,7 @@ kibanaConfig:
     
     xpack.security.enabled: true
 
-
+    elasticsearch.serviceToken: ${ELASTICSEARCH_SERVICE_TOKEN}
 
 secretMounts:
   - name: elasticsearch-certs
