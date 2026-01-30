@@ -27,11 +27,14 @@ resources:
     memory: "1Gi"
 
 env:
-  - name: ELASTICSEARCH_SERVICE_TOKEN
+  - name: ELASTICSEARCH_USERNAME
+    value: elastic
+  - name: ELASTICSEARCH_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: kibana-es-token
-        key: token
+        name: elasticsearch-master-credentials
+        key: password
+
 
 kibanaConfig:
   kibana.yml: |
@@ -39,8 +42,6 @@ kibanaConfig:
     server.port: 5601
     
     elasticsearch.hosts: ["https://elasticsearch-master.elasticsearch.svc:9200"]
-
-    elasticsearch.serviceAccountToken: ${ELASTICSEARCH_SERVICE_TOKEN}
     
     elasticsearch.ssl.certificateAuthorities:
       - /usr/share/kibana/config/certs/ca.crt
